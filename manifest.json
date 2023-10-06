@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+
+  "name": "Fantasy Salary Ext",
+  "version": "0.1.0",
+  "description": "Display salary of NBA players",
+
+  "content_scripts": [{
+    "run_at": "document_end",
+    "css": ["styles.css"],
+    "js": ["content.js"],
+    "matches": ["https://fantasy.espn.com/basketball/players/*"]
+  }],
+
+  "web_accessible_resources": ["salary.json", "test.json"]
+}
