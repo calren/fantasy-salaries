@@ -14,9 +14,6 @@ function run() {
 
   const names = document.querySelectorAll("#fitt-analytics > div > div.jsx-979094127.shell-container > div.page-container.cf > div.layout.is-full > div > div > div.jsx-1948381739.players-table__sortable.tc > div > div > table > tbody > tr:nth-child(n) > td:nth-child(1) > div > div > div.jsx-1811044066.player-column_info.flex.flex-column > div > div.jsx-1811044066.player-column__athlete.flex > span:nth-child(1) > a")
 
-  console.log('Caren');
-  console.log(text.length);
-
   const url = chrome.runtime.getURL('./salary.json');
 
   fetch(url)
@@ -46,7 +43,19 @@ function run() {
 }
 
 function convertToShortScale(numberString) {
-  const number = parseFloat(numberString);
+
+
+  try {
+    const isDefinedSalary = numberString.replace('$','');
+  } catch (err) {
+    return "Invalid input";
+  }
+
+  const removeDollarSign = numberString.replace('$','');
+  const removeCommas = removeDollarSign.replaceAll(',','');
+  const number = parseFloat(removeCommas);
+
+  console.log(number);
 
   if (isNaN(number)) {
     return "Invalid input";
@@ -73,9 +82,6 @@ function onFirstListedPlayerChange(mutationsList, observer) {
       const text = document.querySelectorAll("#fitt-analytics > div > div.jsx-979094127.shell-container > div.page-container.cf > div.layout.is-full > div > div > div.jsx-1948381739.players-table__sortable.tc > div > div > table > tbody > tr:nth-child(n) > td:nth-child(2) > div")
 
       const names = document.querySelectorAll("#fitt-analytics > div > div.jsx-979094127.shell-container > div.page-container.cf > div.layout.is-full > div > div > div.jsx-1948381739.players-table__sortable.tc > div > div > table > tbody > tr:nth-child(n) > td:nth-child(1) > div > div > div.jsx-1811044066.player-column_info.flex.flex-column > div > div.jsx-1811044066.player-column__athlete.flex > span:nth-child(1) > a")
-
-      console.log('Caren');
-      console.log(text.length);
 
       const url = chrome.runtime.getURL('./salary.json');
 
